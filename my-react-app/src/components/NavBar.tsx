@@ -1,27 +1,39 @@
 "use client"
 
+import React from "react"
 import { useState } from "react"
-import { LayoutDashboard, BarChart3, Wallet, Upload, User, Settings, Shield, HelpCircle, Moon, Sun } from "lucide-react"
-    import { Button } from "@/components/ui/button"
-import { Switch } from "@/components/ui/switch"
-import { Separator } from "@/components/ui/separator"
+import { LayoutDashboard, BarChart3, Wallet, Upload, User, Settings, Shield, HelpCircle, Moon, Sun, LucideIcon } from "lucide-react"
+import { Button } from "../components/ui/button"
+import { Switch } from "../components/ui/switch"
+import Separator from "../components/ui/separator"
+
+interface NavItem {
+  icon: LucideIcon;
+  label: string;
+  active?: boolean;
+}
 
 export default function NavigationSidebar() {
   const [darkMode, setDarkMode] = useState(false)
+  const [activeItem, setActiveItem] = useState<string | null>(null);
 
-  const mainNavItems = [
-    { icon: LayoutDashboard, label: "Dashboard", active: true },
-    { icon: BarChart3, label: "Analytics", active: false },
-    { icon: Wallet, label: "My Wallet", active: false },
-    { icon: Upload, label: "Upload Receipts", active: false },
-    { icon: User, label: "My Account", active: false },
-    { icon: Settings, label: "Settings", active: false },
+  const mainNavItems: NavItem[] = [
+    { icon: LayoutDashboard, label: "Dashboard", active: activeItem === "Dashboard" },
+    { icon: BarChart3, label: "Analytics", active: activeItem === "Analytics" },
+    { icon: Wallet, label: "My Wallet", active: activeItem === "My Wallet" },
+    { icon: Upload, label: "Upload Receipts", active: activeItem === "Upload Receipts" },
+    { icon: User, label: "My Account", active: activeItem === "My Account" },
+    { icon: Settings, label: "Settings", active: activeItem === "Settings" },
   ]
 
-  const secondaryNavItems = [
-    { icon: Shield, label: "Security", active: false },
-    { icon: HelpCircle, label: "IT Help Desk", active: false },
+  const secondaryNavItems: NavItem[] = [
+    { icon: Shield, label: "Security", active: activeItem === "Security" },
+    { icon: HelpCircle, label: "IT Help Desk", active: activeItem === "IT Help Desk" },
   ]
+
+  const handleNavClick = (label: string) => {
+    setActiveItem(label);
+  };
 
   return (
     <div className="w-64 h-screen bg-gray-50 border-r border-gray-200 flex flex-col">
@@ -52,6 +64,7 @@ export default function NavigationSidebar() {
                     ? "bg-pink-50 text-pink-700 hover:bg-pink-100"
                     : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
                 }`}
+                onClick={() => handleNavClick(item.label)}
               >
                 <Icon className="w-5 h-5" />
                 {item.label}
@@ -71,6 +84,7 @@ export default function NavigationSidebar() {
                 key={index}
                 variant="ghost"
                 className="w-full justify-start gap-3 h-12 text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                onClick={() => handleNavClick(item.label)}
               >
                 <Icon className="w-5 h-5" />
                 {item.label}
