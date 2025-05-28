@@ -1,16 +1,33 @@
-import { useState } from 'react'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import NavigationSidebar from './components/NavBar'
+import Dashboard from './pages/Dashboard'
+import Analytics from './pages/Analytics'
+import Wallet from './pages/Wallet'
+import Upload from './pages/Upload'
+import Account from './pages/Account'
+import Settings from './pages/Settings'
+import { ThemeProvider } from './context/ThemeContext'
 import './App.css'
 
 function App() {
   return (
-    <div className="flex">
-      <NavigationSidebar />
-      <main className="flex-1 p-8">
-        <h1 className="text-2xl font-bold">Welcome to OinKit</h1>
-        <p className="mt-4 text-gray-600">Your personal finance companion</p>
-      </main>
-    </div>
+    <ThemeProvider>
+      <Router>
+        <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900">
+          <NavigationSidebar />
+          <main className="flex-1">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/analytics" element={<Analytics />} />
+              <Route path="/wallet" element={<Wallet />} />
+              <Route path="/upload" element={<Upload />} />
+              <Route path="/account" element={<Account />} />
+              <Route path="/settings" element={<Settings />} />
+            </Routes>
+          </main>
+        </div>
+      </Router>
+    </ThemeProvider>
   )
 }
 
