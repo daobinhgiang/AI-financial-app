@@ -12,8 +12,8 @@
 }
 
 .dark .navbar-container {
-  background-color: rgb(31 41 55);
-  border-color: rgb(55 65 79);
+    background: rgba(1, 1, 1, 1.0);
+    background: linear-gradient(135deg, rgba(1, 1, 1, 1.0), rgba(19, 9, 55, 1.0));
 }
 
 .navbar-header {
@@ -43,7 +43,7 @@
 }
 
 .dark .logo-image-container {
-  background-color: rgb(131 24 67);
+  background-color: rgb(55 65 79);
 }
 
 .logo-image {
@@ -51,6 +51,10 @@
   height: 2rem;
   object-fit: contain;
 }
+
+/* .dark .logo-image {
+  filter: brightness(0) invert(1);
+} */
 
 .logo-title {
   font-weight: 700;
@@ -92,6 +96,8 @@
   /* border: 1px solid rgb(229 231 235); */
 }
 
+
+
 .nav-button.active {
   background-color: rgb(253 242 248);
   color: rgb(190 24 93);
@@ -112,7 +118,7 @@
 }
 
 .dark .nav-button.active:hover {
-  background-color: rgba(190 24 93, 0.7);
+  background-color: #5c5559;
 }
 
 .nav-button:not(.active) {
@@ -120,24 +126,25 @@
 }
 
 .dark .nav-button:not(.active) {
-  /* color: rgb(209 213 219); */
-  color: rgb(50, 50, 50);
-  background-color: rgb(71, 79, 122);
+  color: #ffe6ed;
+  background-color: rgba(55, 65, 79, 0.4);
 }
 
 .nav-button:not(.active):hover {
   color: rgb(17 24 39);
-  background-color: rgb(243 244 246);
+  background-color: rgb(243, 244, 246);
 }
 
  .dark .nav-button:not(.active):hover {
   color: rgb(255 255 255);
-  background-color: rgb(55 65 79);
+  background-color: rgba(55, 65, 79, 0.1);
+
 }
 
 .nav-icon {
   width: 1.25rem;
   height: 1.25rem;
+  
 }
 
 .theme-toggle {
@@ -178,6 +185,7 @@
 
 .theme-text {
   color: rgb(75 85 99);
+  /* background-color: gray; */
 }
 
 .dark .theme-text {
